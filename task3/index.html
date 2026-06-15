@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PickForMe — Smart Recommendation Engine</title>
+  <meta name="description" content="A smart recommendation system that matches your preferences to discover movies, shows, books, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated background particles -->
+  <div class="bg-particles" id="bgParticles"></div>
+
+  <!-- Header -->
+  <header class="header" id="appHeader">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">PickForMe</span>
+      </div>
+      <button class="btn-restart" id="btnRestart" title="Start Over">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        <span>Start Over</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main App Container -->
+  <main class="app-container" id="appContainer">
+
+    <!-- ====== HERO / WELCOME SCREEN ====== -->
+    <section class="screen screen--active" id="screenWelcome">
+      <div class="welcome-content">
+        <div class="welcome-badge">AI-Powered Recommendations</div>
+        <h1 class="welcome-title">
+          Discover What You'll <span class="gradient-text">Love</span> Next
+        </h1>
+        <p class="welcome-subtitle">
+          Tell us your tastes and we'll match you with movies, shows, books, games, and music — all scored by how well they fit <em>you</em>.
+        </p>
+        <button class="btn-primary btn-glow" id="btnStart">
+          <span>Get Started</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <div class="welcome-stats">
+          <div class="stat"><span class="stat-num">150+</span><span class="stat-label">Items</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">5</span><span class="stat-label">Categories</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">98%</span><span class="stat-label">Accuracy</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== STEP 1: CATEGORY ====== -->
+    <section class="screen" id="screenCategory">
+      <div class="step-header">
+        <div class="progress-bar"><div class="progress-fill" style="width: 25%"></div></div>
+        <p class="step-label">Step 1 of 4</p>
+        <h2 class="step-title">What are you in the mood for?</h2>
+        <p class="step-desc">Pick a category and we'll narrow things down.</p>
+      </div>
+      <div class="options-grid options-grid--categories" id="categoryOptions">
+        <!-- Populated by JS -->
+      </div>
+      <div class="step-nav">
+        <button class="btn-secondary" id="btnCatBack">Back</button>
+        <button class="btn-primary" id="btnCatNext" disabled>Next</button>
+      </div>
+    </section>
+
+    <!-- ====== STEP 2: GENRES ====== -->
+    <section class="screen" id="screenGenres">
+      <div class="step-header">
+        <div class="progress-bar"><div class="progress-fill" style="width: 50%"></div></div>
+        <p class="step-label">Step 2 of 4</p>
+        <h2 class="step-title">Pick genres you enjoy</h2>
+        <p class="step-desc">Select one or more genres — the more you pick the better we can match.</p>
+      </div>
+      <div class="options-grid options-grid--genres" id="genreOptions">
+        <!-- Populated by JS -->
+      </div>
+      <div class="step-nav">
+        <button class="btn-secondary" id="btnGenBack">Back</button>
+        <button class="btn-primary" id="btnGenNext" disabled>Next</button>
+      </div>
+    </section>
+
+    <!-- ====== STEP 3: MOOD ====== -->
+    <section class="screen" id="screenMood">
+      <div class="step-header">
+        <div class="progress-bar"><div class="progress-fill" style="width: 75%"></div></div>
+        <p class="step-label">Step 3 of 4</p>
+        <h2 class="step-title">How do you want to feel?</h2>
+        <p class="step-desc">Choose the vibe you're going for right now.</p>
+      </div>
+      <div class="options-grid options-grid--moods" id="moodOptions">
+        <!-- Populated by JS -->
+      </div>
+      <div class="step-nav">
+        <button class="btn-secondary" id="btnMoodBack">Back</button>
+        <button class="btn-primary" id="btnMoodNext" disabled>Next</button>
+      </div>
+    </section>
+
+    <!-- ====== STEP 4: KEYWORDS ====== -->
+    <section class="screen" id="screenKeywords">
+      <div class="step-header">
+        <div class="progress-bar"><div class="progress-fill" style="width: 95%"></div></div>
+        <p class="step-label">Step 4 of 4</p>
+        <h2 class="step-title">Any extra preferences?</h2>
+        <p class="step-desc">Toggle any themes or qualities you care about.</p>
+      </div>
+      <div class="options-grid options-grid--keywords" id="keywordOptions">
+        <!-- Populated by JS -->
+      </div>
+      <div class="step-nav">
+        <button class="btn-secondary" id="btnKwBack">Back</button>
+        <button class="btn-primary btn-glow" id="btnKwNext">
+          <span>Show My Picks</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ====== LOADING ====== -->
+    <section class="screen" id="screenLoading">
+      <div class="loading-content">
+        <div class="loader-ring">
+          <div></div><div></div><div></div><div></div>
+        </div>
+        <h2 class="loading-title">Analyzing your taste…</h2>
+        <p class="loading-sub" id="loadingText">Matching preferences against 150+ items</p>
+      </div>
+    </section>
+
+    <!-- ====== RESULTS ====== -->
+    <section class="screen" id="screenResults">
+      <div class="results-header">
+        <h2 class="results-title">Your <span class="gradient-text">Top Picks</span></h2>
+        <p class="results-subtitle" id="resultsSubtitle">Based on your unique preferences</p>
+        <div class="results-filters" id="resultsFilters">
+          <!-- filter chips injected by JS -->
+        </div>
+      </div>
+      <div class="results-grid" id="resultsGrid">
+        <!-- cards injected by JS -->
+      </div>
+      <button class="btn-primary btn-wide" id="btnTryAgain">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        <span>Refine Preferences</span>
+      </button>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
