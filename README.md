@@ -1,5 +1,5 @@
 # decodelabs_tasks
-Overview
+# Overview
 
 This repository contains the projects, assignments, and learning activities completed during the DecodeLabs AI Internship. The internship focuses on developing practical skills in Artificial Intelligence (AI), Machine Learning (ML), Deep Learning, and related technologies through hands-on projects and real-world applications.
 
